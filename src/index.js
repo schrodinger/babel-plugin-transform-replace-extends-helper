@@ -3,7 +3,7 @@ export default function () {
     visitor: {
       VariableDeclaration: function (path, file) {
         let declar = path.get('declarations').find(function(declar) {
-          return declar.node.id.name === '_.extends';
+          return declar.node.id.name === '_.extend';
         });
         if (declar) {
           path.remove();
@@ -12,7 +12,7 @@ export default function () {
       CallExpression: function (path, file) {
         let callee = path.get('callee');
         if (callee.type === 'Identifier' && callee.node.name === '_extends') {
-          callee.node.name = '_.extends';
+          callee.node.name = '_.extend';
         }
       }
     }
